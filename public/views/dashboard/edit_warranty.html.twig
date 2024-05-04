@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <script
+      src="https://kit.fontawesome.com/410a7c741c.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&family=Quantico&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit warranty</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/warranties.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/account.css" />
+    <link rel="stylesheet" type="text/css" href="../css/add_warranty.css"/>
+    <script type="text/javascript" src="../js/scriptEdit.js" defer></script>
+  </head>
+  <body>
+    <div class="base-container">
+      <nav>
+    <img src="../img/logo_color.svg" />
+    <ul>
+        <li id="li-warranties">
+            <i id="steady" class="fa-solid fa-house">
+               <i id="animated" class="fa-solid fa-house fa-bounce"></i>
+           </i>
+           <a href="../warranties" class="button">Main page</a>
+        </li>
+        <li id="search_block">
+            <i id="steady" class="fa-solid fa-magnifying-glass">
+                <i id="animated" class="fa-solid fa-magnifying-glass fa-bounce"> </i>
+            </i>
+            <a href="#" class="button" id="search_button">Search</a>
+            <input id="searchbar" type="text" placeholder="search" style="display: none;">
+        </li>
+        <li id="li-archive">
+            <i id="steady" class="fa-solid fa-box-archive">
+                <i id="animated" class="fa-solid fa-box-archive fa-bounce"></i>
+            </i>
+            <a href="../archive" class="button">Archive</a>
+        </li>
+        <li id="li-account">
+            <i id="steady" class="fa-solid fa-user">
+                <i id="animated" class="fa-solid fa-user fa-bounce"></i>
+           </i>
+           <a href="../account" class="button">My account</a>
+        </li>
+    </ul>
+</nav>
+      <main>
+        <header>Edit warranty</header>
+        {% set fieldErrors = [] %}
+        
+        {{ form_start(form) }}
+        
+        <div id="info">
+            {% for child in form %}
+                {% if child.vars.name != '_token' %}
+                    <div class="detail_container">
+                        {{ form_widget(child) }}
+                        <div class="detail_name">{{ form_label(child) }}</div>
+                    </div>
+                    {% for error in child.vars.errors %}
+                        {% set fieldErrors = fieldErrors|merge([error.message]) %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+                    
+            <div class="detail_container">
+                <button type="submit" id="sign">SUBMIT</button>
+            </div>
+        </div>
+        <div class="messages">
+            <ul>
+            {% for fieldError in fieldErrors %}
+                 <li>{{ fieldError}}</li>
+            {% endfor %}
+            </ul>
+            {{ form_errors(form) }}
+        </div>  
+        {{ form_end(form) }}
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+input{
+    font-size: 1em;
+    text-align: center;
+    color: #261132;
+}
+form{
+    height: 80vh;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+}
+
+#info {
+    height: 90%;
+}
+.messages{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+.messages > ul > li{
+    margin: 0;
+    justify-content: center;
+    color: white;
+    font-family: "Roboto";
+}
+.detail_container{
+height: 6em;
+}
+#info .detail{
+    color: #261132;
+}
+option{
+    text-align: center;
+    font-weight: bolder;
+}
+
+#file-box{
+    background: transparent;
+    color: white !important;
+}
+#warranty_form_receipt{
+    background: transparent;
+    color: white !important;
+}
+#warranty_form_purchase_date{
+    border: none;
+}
+#warranty_form_purchase_date select{
+    width: 30%;
+    height: 100%;
+    margin: 0 2em 0 2em;
+}
+
+#info #warranty_form_tags{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around !important;
+    border: none;
+}
+
+#warranty_form_tags label{
+    border: 1px solid white;
+    border-radius: 25px;
+    padding: 5px;
+    border-color: #261132;
+}
+
+#warranty_form_tags input[type="checkbox"]{
+    display: none;
+}
+#warranty_form_tags input[type="checkbox"]:checked + label {
+    color: white;
+    border-color: white;
+    
+}
+
+@media only screen and (max-device-width: 992px) {
+    #info .detail_container{
+        height: 2em;
+        max-width: 14em;
+    }
+    #info {
+        height: 12em;
+    }
+}

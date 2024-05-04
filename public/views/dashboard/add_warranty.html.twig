@@ -1,0 +1,49 @@
+{% extends '/views/base.html.twig' %}
+
+{% block title %}
+    Add warranty
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/warranties.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/account.css" />
+    <link rel="stylesheet" type="text/css" href="../css/add_warranty.css"/>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="../js/scriptAccount.js" defer></script>
+{% endblock %}
+
+{% block main %}
+    <header>Add warranty</header>
+        {% set fieldErrors = [] %}
+        
+        {{ form_start(form) }}
+            <div id="info">
+                {% for child in form %}
+                    {% if child.vars.name != '_token' %}
+                        <div class="detail_container">
+                            {{ form_widget(child) }}
+                            <div class="detail_name">{{ form_label(child) }}</div>
+                        </div>
+                        {% for error in child.vars.errors %}
+                            {% set fieldErrors = fieldErrors|merge([error.message]) %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+
+                <div class="detail_container">
+                    <button type="submit" id="sign">ADD</button>
+                </div>
+            </div>
+            <div class="messages">
+            <ul>
+            {% for fieldError in fieldErrors %}
+                 <li>{{ fieldError}}</li>
+            {% endfor %}
+            </ul>
+            {{ form_errors(form) }}
+            </div>  
+        {{ form_end(form) }}
+{% endblock %}

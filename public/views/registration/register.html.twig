@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+              href="https://fonts.googleapis.com/css2?family=Inter&family=Quantico&family=Roboto&display=swap"
+              rel="stylesheet"
+      />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WarranTrack</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <script type="text/javascript" src="../js/script.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <img src="../img/logo.svg" />
+      </div>
+       {% set fieldErrors = [] %}
+       {{ form_start(registrationForm, {'attr': {'class': 'login'}}) }}
+          <div class="header_login">
+              <div>Sign up</div>
+          </div>
+         {{ form_widget(registrationForm.name) }}
+        {% for error in registrationForm.name.vars.errors %}
+            {% set fieldErrors = fieldErrors|merge([error.message]) %}
+        {% endfor %}
+        {{ form_widget(registrationForm.surname) }}
+        {% for error in registrationForm.surname.vars.errors %}
+            {% set fieldErrors = fieldErrors|merge([error.message]) %}
+        {% endfor %}
+        {{ form_widget(registrationForm.email) }}
+        {% for error in registrationForm.email.vars.errors %}
+            {% set fieldErrors = fieldErrors|merge([error.message]) %}
+        {% endfor %}
+
+        {{ form_widget(registrationForm.plainPassword) }}
+        {% for error in registrationForm.plainPassword.vars.errors %}
+            {% set fieldErrors = fieldErrors|merge([error.message]) %}
+        {% endfor %}
+        
+        {{ form_widget(registrationForm.confirmedPassword) }}
+        {% for error in registrationForm.confirmedPassword.vars.errors %}
+            {% set fieldErrors = fieldErrors|merge([error.message]) %}
+        {% endfor %}
+        <button type="submit" class="btn" id="sign">SIGN UP</button>
+        <a href="login" type="submit" id="signup">SIGN IN</a>
+        <div class="messages">
+            {% if app.user %}
+                <div>
+                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
+            <ul>
+                {% for fieldError in fieldErrors %}
+                    <li>{{ fieldError}}</li>
+                {% endfor %}
+            </ul>
+            {{ form_errors(registrationForm) }}
+        </div> 
+        {{ form_end(registrationForm) }}
+    </div>
+  </body>
+</html>

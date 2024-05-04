@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+              href="https://fonts.googleapis.com/css2?family=Inter&family=Quantico&family=Roboto&display=swap"
+              rel="stylesheet"
+      />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WarranTrack</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <img src="../img/logo.svg" />
+      </div>
+      <form method="post" class="login">
+        <div class="header_login">
+            <div>Sign in</div>
+                <div class="messages">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <div>
+                            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        </div>
+                    {% endif %}
+                </div>
+        </div>
+    
+    <input type="email" placeholder="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    <input type="password" placeholder="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+    <button class="btn btn-lg btn-primary" type="submit" id="sign">SIGN IN</button>
+    <a href="register" type="submit" id="signup">SIGN UP</a>
+</form>
+      
+    </div>
+  </body>
+</html>
+
+
+

@@ -1,0 +1,42 @@
+{% extends '/views/base.html.twig' %}
+
+{% block title %}
+    Account
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/warranties.css" />
+    <link rel="stylesheet" type="text/css" href="../css/account.css" />
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="../js/scriptAccount.js" defer></script>
+{% endblock %}
+
+{% block main %}
+    <header>My account</header>
+        <div id="info">
+            <div class="detail_container">
+                <div class="detail">{{ userDetails.name }}</div>
+                <div class="detail_name">Name</div>
+            </div>
+            <div class="detail_container">
+                <div class="detail">{{ userDetails.surname }}</div>
+                <div class="detail_name">Surname</div>
+            </div>
+          <div class="detail_container">
+            <div class="detail">{{app.user.email}}</div>
+            <div class="detail_name">Email</div>
+          </div>
+          <div class="detail_container">
+            <div class="detail">************</div>
+            <div class="detail_name">Password</div>
+          </div>
+          <div class="detail_container">
+              <form class="login" action="logout" method="POST">
+                    <button type="submit" id="sign">SIGN OUT</button>
+              </form>
+          </div>
+        </div>
+{% endblock %}

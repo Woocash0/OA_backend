@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <script
+      src="https://kit.fontawesome.com/410a7c741c.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&family=Quantico&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    
+    {% block stylesheets %}{% endblock %}
+    {% block javascripts %}{% endblock %}
+
+  </head>
+  <body>
+    <div class="base-container">
+      {% include '/views/navigation.html.twig' %}
+      <main>
+            {% block main %}{% endblock %}
+      </main>
+    </div>
+    {% block notification %}{% endblock %}
+  </body>
+  {% block template %}{% endblock %}
+</html>

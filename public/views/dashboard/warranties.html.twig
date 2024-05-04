@@ -1,0 +1,47 @@
+{% extends '/views/base.html.twig' %}
+
+{% block title %}
+    Warranties
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/warranties.css" />
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="../js/scriptWarranties.js" defer></script>
+{% endblock %}
+
+{% block main %}
+    <a href="add_warranty" class="add_button">
+              <img src="../img/add_button.svg" />
+          </a>
+        <header>Active warranties ({{warranties|length }})</header>
+        <section class="warranties">
+            {% for warranty in warranties %}
+                <div class="warranty_box" id="{{warranty.id}}">
+                    <img src="../img/{{warranty.category}}.svg" />
+                    <div class="imgname">{{warranty.category}}</div>
+                    <div class="hidden_details" style="display: none;">
+                        <div id="productName">{{warranty.productName}}</div>
+                        <div id="purchaseDate">{{ warranty.purchaseDate|date('Y-m-d') }}</div>
+                        <div id="warrantyPeriod">{{warranty.warrantyPeriod}}</div>
+                        <div id="receipt">{{warranty.receipt}}</div>
+                        <div id="tags">{% for tag in warranty.tags %}
+                                {{ tag.name }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+{% endblock %}
+
+{% block notification %}
+    {% include '/views/dashboard/notification-panel.html.twig' %}
+{% endblock %}
+    
+{% block template %}
+    {% include '/views/dashboard/warranty-template.html.twig' %}
+{% endblock %}

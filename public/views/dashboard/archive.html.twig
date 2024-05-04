@@ -1,0 +1,44 @@
+{% extends '/views/base.html.twig' %}
+
+{% block title %}
+    Archive
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/warranties.css" />
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="../js/scriptWarranties.js" defer></script>
+{% endblock %}
+
+{% block main %}
+    <header>Archive ({{archives|length }})</header>
+    <section class="warranties">
+        {% for archive in archives %}
+            <div class="warranty_box" id="{{archive.id}}">
+                <img src="./img/{{archive.category}}.svg" />
+                <div class="imgname">{{archive.category}}</div>
+                <div class="hidden_details" style="display: none;">
+                    <div id="productName">{{archive.productName}}</div>
+                    <div id="purchaseDate">{{ archive.purchaseDate|date('Y-m-d') }}</div>
+                    <div id="warrantyPeriod">{{archive.warrantyPeriod}}</div>
+                    <div id="receipt">{{archive.receipt}}</div>
+                    <div id="tags">{% for tag in archive.tags %}
+                    {{ tag.name }}
+                {% endfor %}
+            </div>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}
+
+{% block notification %}
+    {% include '/views/dashboard/notification-panel.html.twig' %}
+{% endblock %}
+    
+{% block template %}
+    {% include '/views/dashboard/warranty-template.html.twig' %}
+{% endblock %}
